@@ -1,15 +1,16 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Runtime.InteropServices;
 
 public class MQTT : MonoBehaviour
 {
+    [Header("References")]
+    public trigger modelTrigger;
+    public ARAudioLipSync audioLipSync;
+
     [Header("Mosquitto Public Config")]
     public string brokerHostname = "test.mosquitto.org";
     public int brokerPort = 8081; // gate WSS of Mosquitto
     public string topic = "hcmus/bot/to/unity/webar/face/acttion/weight/31313131";
-
-    [Header("Reference")]
-    public trigger modelTrigger;
 
     [DllImport("__Internal")]
     private static extern void ConnectWebMQTT(string broker, int port, string topic);
@@ -38,6 +39,12 @@ public class MQTT : MonoBehaviour
                 modelTrigger.Action = latestData.ActionID;
                 modelTrigger.targetWeight = latestData.Weight;
             }
+
+            if (audioLipSync != null)
+                audioLipSync.PlayFromUrl(latestData.AudioUrl);
+            else
+                Debug.LogError("[MQTT] Chưa gắn ARAudioLipSync");
+
         }
         catch (System.Exception ex)
         {

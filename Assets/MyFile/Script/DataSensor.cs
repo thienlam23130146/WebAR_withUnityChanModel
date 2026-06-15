@@ -6,6 +6,6 @@ public class DataSensor
     public int FaceID; //faceEmotion
     public int ActionID; // action
     public float Weight; // weight for emotion
-    public string Text;
+    //public string Text;
     public string AudioUrl;
 }

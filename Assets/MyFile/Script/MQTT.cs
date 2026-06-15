@@ -6,6 +6,7 @@ public class MQTT : MonoBehaviour
     [Header("References")]
     public trigger modelTrigger;
     public ARAudioLipSync audioLipSync;
+    public VoiceDownloader voiceDownloader;
 
     [Header("Mosquitto Public Config")]
     public string brokerHostname = "test.mosquitto.org";
@@ -40,10 +41,15 @@ public class MQTT : MonoBehaviour
                 modelTrigger.targetWeight = latestData.Weight;
             }
 
-            if (audioLipSync != null)
-                audioLipSync.PlayFromUrl(latestData.AudioUrl);
-            else
-                Debug.LogError("[MQTT] Chưa gắn ARAudioLipSync");
+            //if (audioLipSync != null)
+            //    audioLipSync.PlayFromUrl(latestData.AudioUrl);
+            //else
+            //    Debug.LogError("[MQTT] Chưa gắn ARAudioLipSync");
+
+            if (voiceDownloader != null && !string.IsNullOrEmpty(latestData.AudioUrl))
+            {
+                voiceDownloader.PlayVoiceFromUrl(latestData.AudioUrl);
+            }
 
         }
         catch (System.Exception ex)

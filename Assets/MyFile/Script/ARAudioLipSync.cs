@@ -65,6 +65,11 @@ public class ARAudioLipSync : MonoBehaviour
         audioSource.clip = clip;
         audioSource.Play();
 
+        Debug.Log("[AR AUDIO] PLAY SUCCESS");
+        Debug.Log("[AR AUDIO] AudioSource Object = " + audioSource.gameObject.name);
+        Debug.Log("[AR AUDIO] isPlaying = " + audioSource.isPlaying);
+        Debug.Log("[AR AUDIO] Clip length = " + audioSource.clip.length);
+
         Debug.Log($"[AR AUDIO] Đang phát {clip.length:F2} giây");
         downloadRoutine = null;
     }
@@ -90,6 +95,8 @@ public class ARAudioLipSync : MonoBehaviour
             targetWeight,
             smoothSpeed * Time.deltaTime
         );
+
+        Debug.Log("[LIP] mouthWeight = " + currentMouthWeight);
 
         if (faceRenderer != null && mouthOpenBlendShapeIndex >= 0)
         {

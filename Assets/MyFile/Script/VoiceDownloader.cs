@@ -19,9 +19,8 @@ public class VoiceDownloader : MonoBehaviour
 
     private IEnumerator DownloadAndPlay(string url)
     {
-        Debug.Log(">> Bắt đầu tải Audio từ Server: " + url);
+        Debug.Log(">> down Audio from Server: " + url);
 
-        // Lưu ý: Đang dùng AudioType.WAV. Nếu bạn dùng mp3 thì đổi thành AudioType.MPEG
         using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.WAV))
         {
             yield return www.SendWebRequest();
@@ -29,16 +28,12 @@ public class VoiceDownloader : MonoBehaviour
             if (www.result == UnityWebRequest.Result.Success)
             {
                 AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
-
-                // Nhét file âm thanh vào loa và phát
                 targetAudioSource.clip = clip;
                 targetAudioSource.Play();
-
-                Debug.Log(">> Tải thành công! Đang phát âm thanh, uLipSync sẽ tự động nhép miệng.");
             }
             else
             {
-                Debug.LogError(">> Lỗi tải Audio: " + www.error);
+                Debug.LogError(">> ERRoR Audio: " + www.error);
             }
         }
     }

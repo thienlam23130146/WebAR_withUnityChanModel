@@ -19,12 +19,12 @@ public class MQTT : MonoBehaviour
     void Start()
     {
         if (gameObject.name != "MQTT_Manager")
-            Debug.LogError(" MQTT_Manager error ");
+            BrowserConsole.Log(" MQTT_Manager error ");
 
 #if UNITY_WEBGL && !UNITY_EDITOR
             ConnectWebMQTT(brokerHostname, brokerPort, topic);
 #else
-        Debug.Log("please Build -> WebGL");
+        BrowserConsole.Log("please Build -> WebGL");
 #endif
     }
 
@@ -45,7 +45,7 @@ public class MQTT : MonoBehaviour
             //    audioLipSync.PlayFromUrl(latestData.AudioUrl);
             //else
             //    Debug.LogError("[MQTT] Chưa gắn ARAudioLipSync");
-            Debug.Log($"[MQTT] Received Data: FaceID={latestData.FaceID}, ActionID={latestData.ActionID}, Weight={latestData.Weight}, AudioUrl={latestData.AudioUrl}");
+            BrowserConsole.Log($"[MQTT] Received Data: FaceID={latestData.FaceID}, ActionID={latestData.ActionID}, Weight={latestData.Weight}, AudioUrl={latestData.AudioUrl}");
 
             if (voiceDownloader != null)
             {
@@ -56,7 +56,7 @@ public class MQTT : MonoBehaviour
         }
         catch (System.Exception ex)
         {
-            Debug.LogError("Error JSON: " + ex.Message);
+            BrowserConsole.Log("Error JSON: " + ex.Message);
         }
     }
 }

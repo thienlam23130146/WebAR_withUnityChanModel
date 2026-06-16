@@ -23,6 +23,7 @@ public class VoiceDownloader : MonoBehaviour
 
         using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.WAV))
         {
+            www.SetRequestHeader("ngrok-skip-browser-warning", "true");
             yield return www.SendWebRequest();
 
             if (www.result == UnityWebRequest.Result.Success)
@@ -30,6 +31,7 @@ public class VoiceDownloader : MonoBehaviour
                 AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
                 targetAudioSource.clip = clip;
                 targetAudioSource.Play();
+                Debug.Log(">> Done down voice!uLipSync active");
             }
             else
             {

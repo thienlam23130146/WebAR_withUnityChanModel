@@ -23,7 +23,6 @@ public class VoiceDownloader : MonoBehaviour
 
         using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.WAV))
         {
-            www.SetRequestHeader("ngrok-skip-browser-warning", "true");
             yield return www.SendWebRequest();
 
             if (www.result == UnityWebRequest.Result.Success)

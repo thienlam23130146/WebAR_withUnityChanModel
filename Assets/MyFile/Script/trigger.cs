@@ -61,9 +61,7 @@ public class trigger : MonoBehaviour
 
     void ExecuteAction(int id)
     {
-        // 1. Cập nhật số ID để Animator biết phải vào hành động nào
         animator.SetInteger("ActionID", id);
-        // 2. Kích hoạt Trigger để "mở cửa" cho phép chuyển trạng thái
         animator.SetTrigger("Active");
     }
 }

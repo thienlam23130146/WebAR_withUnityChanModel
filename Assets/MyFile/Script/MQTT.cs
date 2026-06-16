@@ -45,11 +45,13 @@ public class MQTT : MonoBehaviour
             //    audioLipSync.PlayFromUrl(latestData.AudioUrl);
             //else
             //    Debug.LogError("[MQTT] Chưa gắn ARAudioLipSync");
+            Debug.Log($"[MQTT] Received Data: FaceID={latestData.FaceID}, ActionID={latestData.ActionID}, Weight={latestData.Weight}, AudioUrl={latestData.AudioUrl}");
 
             if (voiceDownloader != null && !string.IsNullOrEmpty(latestData.AudioUrl))
             {
                 voiceDownloader.PlayVoiceFromUrl(latestData.AudioUrl);
             }
+
 
         }
         catch (System.Exception ex)

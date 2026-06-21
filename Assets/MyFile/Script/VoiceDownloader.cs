@@ -19,7 +19,7 @@ public class VoiceDownloader : MonoBehaviour
 
     private IEnumerator DownloadAndPlay(string url)
     {
-        Debug.Log(">> down Audio from Server: " + url);
+        BrowserConsole.Log(">> down Audio from Server: " + url);
 
         using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.WAV))
         {
@@ -30,11 +30,11 @@ public class VoiceDownloader : MonoBehaviour
                 AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
                 targetAudioSource.clip = clip;
                 targetAudioSource.Play();
-                Debug.Log(">> Done down voice!uLipSync active");
+                BrowserConsole.Log(">> Done down voice!uLipSync active");
             }
             else
             {
-                Debug.LogError(">> ERRoR Audio: " + www.error);
+                BrowserConsole.Log(">> ERRoR Audio: " + www.error);
             }
         }
     }

@@ -791,6 +791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoiceDownloader
   targetAudioSource: {fileID: 773190232}
+  audioType: 20
 --- !u!114 &1964602101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -945,7 +946,7 @@ MonoBehaviour:
     useExtraSmoothing: 0
     smoothenFactor: 10
     debugMode: 0
-  dontDeactivateOnLost: 0
+  dontDeactivateOnLost: 1
   OnImageFound:
     m_PersistentCalls:
       m_Calls: []
